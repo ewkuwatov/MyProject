@@ -1,50 +1,19 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Войти</title>
+</head>
+<body>
+<div class="container">
+    <form method="POST" >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Войти</button>
+</form>
+</div>
 
-{% block active %}
-    <nav>
-        <ul id="navigation">
-            <li><a class="active" href="login">login</a></li>
-            <li><a  href="\">home</a></li>
-        </ul>
-    </nav>
-{% endblock %}
-
-{% block content %}
-<!--<body style="background-image: url(https://www.zem-restaurant.fr/userfiles/25736/Bandeau/Bandeau005.jpg); background-size: 100%;">-->
-<!--    <div class="container">-->
-<!--        <img style="margin: 0 556px;" src="static/img/logo.png" alt="">-->
-  <div class="slider_area">
-        <div class="slider_active owl-carousel">
-            <div class="single_slider  d-flex align-items-center slider_bg_1 overlay"  style="background-image: url(https://www.zem-restaurant.fr/userfiles/25736/Bandeau/Bandeau005.jpg)">
-                <div class="container" >
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-xl-9 col-md-9 col-md-12">
-                            <form method="POST" class="form-group" style="width:500px; margin: 300px auto;">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                                <h1 class="h3 mb-3 fw-normal" style="font-family: sans-serif; margin-left: 160px; color: white;">Please sign in</h1>
-
-                                <div class="form-floating">
-                                  <input type="username" class="form-control" id="floatingInput" placeholder="username">
-                                  <label for="floatingInput">username</label>
-                                </div>
-                                <div class="form-floating">
-                                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                                  <label for="floatingPassword">Password</label>
-                                </div>
-
-                                <div class="form-check text-start my-3">
-                                  <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                                  <label class="form-check-label" for="flexCheckDefault">
-                                    Remember me
-                                  </label>
-                                </div>
-                                <button class="btn btn-primary w-100 py-2" style="background: #F2C64D; border: #F2C64D; width: 200px; font-size: 20px;">Sign in</button>
-                                <p class="mt-5 mb-3 text-body-secondary" style="font-family: sans-serif; font-size: 22px; margin-left:100px; color: white;">Account not found? <a href="/register" style="cursor:pointer; color: white;">Register!</a></p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!--    </div>-->
-{% endblock %}
+<hr>
+<p>Нет аккаунта? Тогда <a href="/register">Регистрация</a>!</p>
+</body>
+</html>

@@ -9,18 +9,16 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["username", "password", "password2"]
-        widgets = {
-            "username": TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите название'
-            }),
-            'password': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите название'
-            }),
-            'password2': TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Введите название'
-            })
-        }
+        fields = ["username", "email", "password1", "password2"]
+
+
+PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
+
+# class CartAddProductForm(forms.Form):
+#     quantity = forms.TypedChoiceField(
+#         choices=PRODUCT_QUANTITY_CHOICES,
+#         coerce=int)
+#     update = forms.BooleanField(required=False,
+#                                 initial=False,
+#                                 widget=forms.HiddenInput)
+
