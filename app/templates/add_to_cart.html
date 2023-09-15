@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-{% for product in cart %}
-        {% with product=item.product %}
+{% for product in Cart %}
+        {% with product=Cart.product %}
           <tr>
             <td>
               <a href="{{ product.get_absolute_url }}">
@@ -16,8 +16,8 @@
             <td>{{ product.name }}</td>
             <td>
               <form action="{% url 'add_to_cart' product.id %}" method="post">
-                {{ item.update_quantity_form.quantity }}
-                {{ item.update_quantity_form.update }}
+                {{ Cart.update_quantity_form.quantity }}
+                {{ Cart.update_quantity_form.update }}
                 <input type="submit" value="Обновить">
                 {% csrf_token %}
               </form>
@@ -30,6 +30,6 @@
             <td class="num">${{ item.total_price }}</td>
           </tr>
         {% endwith %}
-      {% endfor %}
+{% endfor %}
 </body>
 </html>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block active %}
+    <nav>
+        <ul id="navigation">
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block content %}
+ <!-- bradcam_area_start -->
+    <div class="bradcam_area breadcam_bg overlay" style="background-image: url(https://www.zem-restaurant.fr/userfiles/25736/Bandeau/Bandeau005.jpg)">
+        <div class="container">
+    <form method="post" style="margin: 0 0 100px 0;">
+        <div class="col-xl-12">
+            <div class="section_title mb-60 text-center">
+                <span>Register form</span>
+            </div>
+        </div>
+        {% csrf_token %}
+<!--        {{ form.as_p }}-->
+        {{ form.username }}<br><br>
+        {{ form.email }}<br><br>
+        {{ form.password }}<br><br>
+        {{ form.password2 }}<br><br>
+        <button type="submit" class="btn btn-success" style="background: #F2C64D; color: White; border: #F2C64D;">Регистрация</button>
+            <span>{{ error }}</span>
+    </form>
+    </div>
+    <!-- bradcam_area_end -->
+
+{% endblock %}

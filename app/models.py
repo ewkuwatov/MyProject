@@ -51,7 +51,7 @@ class Cart(models.Model):
         verbose_name_plural = 'Корзины'
 
     def __str__(self):
-        return self.name
+        return self.product
 
 class Testimonial(models.Model):
     name = models.CharField('Имя',max_length=150, db_index=True)
@@ -66,3 +66,16 @@ class Testimonial(models.Model):
     def __str__(self):
         return self.name
 
+class Register(models.Model):
+    login = models.CharField('Имя', max_length=150, db_index=True)
+    email = models.EmailField('Электронная почта', max_length=200)
+    password = models.CharField('Пароль', max_length=100)
+    password2 = models.CharField('Подтвердите пароль', max_length=100)
+
+    class Meta:
+        ordering = ('login', 'email', 'password', 'password2')
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+
+    def __str__(self):
+        return self.login

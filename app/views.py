@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
-from .models import Testimonial
+from .models import Testimonial, Register
 from .models import Product, Cart
+from .forms import TestimonialForm
 
-def product_list(request):
-    products = Product.objects.all()
-    return render(request, 'product_list.html', {'products': products})
+# def product_list(request):
+#     products = Product.objects.all()
+#     return render(request, 'product_list.html', {'products': products})
 
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
@@ -13,7 +14,7 @@ def add_to_cart(request, product_id):
     if not created:
         cart.quantity += 1
         cart.save()
-    return redirect(request, 'add_to_cart.html')
+    return redirect(request, 'cart')
 
 
 def index(request, category_slug=None):
@@ -35,8 +36,13 @@ def detail(request, id, slug):
     product = get_object_or_404(request, id=id, slug=slug, available=True)
     return render(request, 'detail.html', {'product': product,})
 
-
 def Menu(request, category_slug=None):
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    form = TestimonialForm()
     category = None
     products = Product.objects.filter()
     testimonial = Testimonial.objects.filter()
@@ -47,7 +53,8 @@ def Menu(request, category_slug=None):
                     {
                         'category': category,
                         'products': products,
-                        'testimonial': testimonial
+                        'testimonial': testimonial,
+                        'form': form,
                     })
 
 def About(request, category_slug=None):
@@ -70,14 +77,14 @@ def Cart(request):
 
 
 
-def register(request):
-    if request.method == 'POST':
+def Register(request):
+    if request.method == 'POST' and 'password' == 'password2':
         form = forms.RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/menu')
+        return redirect('/')
     else:
         form = forms.RegisterForm()
 
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'Register.html', {'form': form})
 

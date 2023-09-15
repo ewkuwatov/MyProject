@@ -40,6 +40,7 @@
                             <h3>{{ product.name }}</h3>
                             <p>{{ product.description }}</p>
                             <span style="display: inline; margin-right: 20px; ">${{ product.price }}</span>
+                            {% csrf_token %}
                             <form style="display: inline;" action="{% url 'add_to_cart' product.id %}" method="POST">
                                 <button class="btn btn-warning rounded-pill px-3" style="background: #F2C64D; width: 100px; color: White;" type="button"><a href="{% url 'add_to_cart' product.id %}" style="width: 100px; color: White;">Buy</a></button>
                             </form>
@@ -87,7 +88,7 @@
     <!-- features_room_end -->
 
     <!-- testimonial_area_start  -->
-        <div class="testimonial_area ">
+        <div class="testimonial_area">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
@@ -100,7 +101,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="testmonial_active owl-carousel">
-                                <div class="single_carousel">
+                                    <div class="single_carousel">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-8">
                                             <div class="single_testmonial text-center">
@@ -205,7 +206,16 @@
                 </div>
         </div>
 <!-- testimonial_area_ned  -->
-
+    <div class="container">
+        <form method="post" style="margin: 70px 0 70px 0;">
+            {% csrf_token %}
+            {{ form.name }}<br>
+            {{ form.image }}<br>
+            {{ form.description }}<br>
+            <button type="submit" class="btn btn-success" style="background: #F2C64D; color: White; border: #F2C64D; "><b style="color: White;">Добавить</b></button>
+            <span>{{ error }}</span>
+        </form>
+    </div>
     <!-- instragram_area_start -->
     <div class="instragram_area">
     <div class="container">

@@ -19,13 +19,5 @@
         <h3>Your burger cart</h3>
     </div>
     <!-- bradcam_area_end -->
-    <h1>Product List</h1>
-    <ul>
-        {% for product in products %}
-        <li>
-            <strong>{{ product.name }}</strong> - ${{ product.price }}
-            <a href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
-        </li>
-        {% endfor %}
-    </ul>>
+
 {% endblock %}
